@@ -6,22 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
+    <style>
+        .comentarios {
+            text-align: center;
+            width: 400px;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            color:  black;
+            font-weight: bolder;
+            border: 1px solid black;
+            border-radius: 14px;
+            background-color: gray;
+         }
+    </style>
 </head>
-<body>  
 
-    <h1>Welcome to Comentary Hub</h1>
-    <form action="" method="post"></form>
-    <label for="">Autor</label>
-    <input type="text" name="autor" id="">
-    <label for="">Senha</label>
-    <input type="password" name="senha" id="">
-    <label for="">Data</label>
-    <input type="datetime" name="datahora" id="">
-    <label for="campodetexto">Comentários</label>
-    <textarea name="campodetexto" id="" cols="30" rows="10"></textarea>
-    <input type="submit" value="Salvar">
+<body>
+    <div class="comentarios" id="form-comentarios">
+        <h3>Novo comentario</h3>
+        <form onsubmit="submitContent(event)">
+            <label for="autor">Autor</label>
+            <input type="text" name="autor" id="autor">
+            <label for="">Digite seu comentário</label>
+            <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
+            <input type="submit" class="btn-submit" value="Enviar">
 
-
-    <script type="module" src="./script.js"></script>
+        </form>
+    </div>
 </body>
+
 </html>
