@@ -1,8 +1,20 @@
+.comentarios {
+    text-align: center;
+    width: 400px;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    color:  black;
+    font-weight: bolder;
+    border: 1px solid black;
+    border-radius: 14px;
+    background-color: gray;
+ }
+
 .comentarios label{
     margin-top: 10px;
     padding: 10px;
 }
-
 
 .comentarios > *{
     padding: 10px auto;
@@ -27,3 +39,4 @@
     padding: 10px;
     width: 100px;
 }
+
