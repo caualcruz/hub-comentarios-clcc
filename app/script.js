@@ -26,7 +26,7 @@ const loadComment = () => {
 const horaComent = () =>{
     const dataAtual = new Date();
     const options = { day:'numeric', month:'short', hour: 'numeric'};
-    const date = `Dia ${dataAtual.toLocaleString('pt-BR', options)} horas`
+    const date = `${dataAtual.toLocaleString('pt-BR', options)} horas`
     return date
 }
 
