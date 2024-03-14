@@ -21,6 +21,21 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 })
 
+db.connect((err)  =>{
+    if (err) return console.log(err);
+    console.log('Conectado com sucesso!')
+})
+
+server.get('/comment', (req, res) =>{
+    db.query('SELECT * FROM comment', (err, result) =>{
+        if (err) {
+            res.status(500).json({success: false, error: err});
+            return
+        }
+        res.json({success: true, comment:result});
+    })
+})
+
 server.listen(PORT, () =>{
     console.log(`O server está rodando em http//localhost:${PORT}`)
 })

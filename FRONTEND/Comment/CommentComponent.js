@@ -1,4 +1,6 @@
 import formatedDate from "./utils.js";
+import { CommentService } from "../services/comment.services.js";
+import { Comment } from "../models/comment.models.js";
 
 const getInputComment = () => {
   return {
@@ -8,34 +10,36 @@ const getInputComment = () => {
 };
 
 const setInputComment = (authorValue, commentValue) => {
-const {author, comment} = getInputComment();
-author.value = authorValue
-comment.value = commentValue
-}
+  const { author, comment } = getInputComment();
+  author.value = authorValue;
+  comment.value = commentValue;
+};
 
 const getInputCommentValue = () => {
-    return {
-      author: document.getElementById("inputAuthor").value,
-      comment: document.getElementById("inputComment").value,
-    };
-  };
-  
+  return {
+    author: document.getElementById("inputAuthor").value,
+    comment: document.getElementById("inputComment").value,
+  };     
+};
 
 const submitComment = (event) => {
   event.preventDefault();
 
-const comment = getInputCommentValue();
+  const comment = getInputCommentValue();
 
- //REQUISIÇÃO POST PARA ENVIAR O COMMENT
+  //REQUISIÇÃO POST PARA ENVIAR O COMMENT
 
   loadComment();
 };
 
-const loadComment = () => {
+const loadComment = async () => {
   // Dados carregados da API
-  if (data) {
-    displayComment(data);
-  }
+  const data = await CommentService.apiGetComment();
+
+  const comments = data.map(comment => {
+    comment = new Comment(comment.id, comment.author, comment.comment_text,);
+  })
+  displayComment(comments);
 };
 
 const displayComment = (comments) => {
@@ -54,11 +58,11 @@ const displayComment = (comments) => {
                 dy=".3em">32x32</text>
         </svg>
         <p class="pb-3 mb-0 small lh-sm border-bottom" id="showComment">
-            <strong class="d-block text-gray-dark">@${item.author}
-             | ${formatedDate(item.date)}
+            <strong class="d-block text-gray-dark">@${item.getAuthor()}
+             | ${formatedDate(item.getCreated_at())}
             </strong>
 
-            ${item.comment}
+            ${item.getComment_text()}
         </p>
 
         `;
