@@ -30,7 +30,6 @@ server.get('/comment', (req, res) =>{
     db.query('SELECT * FROM comment', (err, result) =>{
         if (err) {
             res.status(500).json({success: false, error: err});
-            return
         }
         res.json({success: true, comment:result});
     })
