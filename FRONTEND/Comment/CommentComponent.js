@@ -62,8 +62,8 @@ const displayComment = (comments) => {
                 <text x="35%" y="50%" fill="${lightColors()}"dy=".3em">${item.getAuthor().charAt(0)}</text>
             </svg>
             <p class="pb-3 mb-0 small lh-sm text-gray-dark">
-                <strong class="d-block text-gray-dark">@${item.getAuthor()}
-                <span class="date-style badge text-bg-secondary">${formatDate(item.getCreatedAt())}</span>
+                <strong class="d-block text-gray-dark">@${item.getAuthor()}    |    ${formatDate(item.getCreatedAt())}
+                
                 </strong>
                 <span class="comment">
                 ${item.getComment()}
