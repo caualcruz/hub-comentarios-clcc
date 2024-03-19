@@ -38,6 +38,7 @@ box-shadow: 0px 1px 2px}
     margin-top: 20px;
 }
 
+
 #form-comentario textarea, input {
     
     padding: 5px;
@@ -51,13 +52,24 @@ box-shadow: 0px 1px 2px}
     border: 1px solid rgb(86, 86, 86);
 }
 
+#login-form button{ 
+    margin-left: 130px;
+    margin-top: 30px;
+}
+
+#login-form *{
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
 #form-comentario button{
 margin-left: 120px;
 }
 
 
-
-#form-comentario .btn-submit{
+.btn-submit{
     border: none;
     background-color: rgb(201, 201, 201);
     border-radius: 7px;
@@ -71,8 +83,15 @@ margin-left: 120px;
     padding: 10px auto 0px auto;
 }
 
-/* #hub-comentarios p{
-    padding-left: 5px;
-    border: 2px solid gold;
+.disabled{
+    display: none;
+}
 
-} */
+.comments{
+    transition: all 0.5s ease
+}
+
+.comments.disabled{
+    opacity: 0;
+    pointer-events: none;
+}
