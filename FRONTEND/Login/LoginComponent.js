@@ -1,27 +1,55 @@
-const URL_API = "http://localhost:7000";
+import { User } from "../Comment/models/user.model.js";
+import { LoginService } from "../services/login.services.js";
+import { setInputComment } from "../Comment/CommentComponent.js"
 
-const LoginService = {
-  apiAuthUser: (user) => {
-    return new Promise((resolve, reject) => {
-      fetch(`${URL_API}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            resolve(data.comment);
-          } else {
-            reject(data.error);
-          }
-        });
-    }).catch((error) => {
-      reject("Erro na requisção AJAX", error);
-    });
-  },
-};
 
-export { LoginService };
+const getLoginInputs = () => {
+  return {
+    username: document.getElementById('username'),
+    password: document.getElementById('password'),
+  }
+}
+
+const handleShowHide = () => {
+ const newCommentTag = document.getElementById('form-comentario')
+  const loginTag = document.getElementById('login-form')
+
+  if( newCommentTag.classList.contains('disabled')){
+    newCommentTag.classList.remove('disabled')
+    loginTag.classList.add('disabled')
+  } else {
+    newCommentTag.classList.add('disabled')
+    loginTag.classList.remove('disabled')
+  }
+}
+
+const handleLogin = (event) =>{
+  event.preventDefault();
+  const { username, password } = getLoginInputs();
+  const user = new User(null,username.value, password.value)
+
+  LoginService.apiAuthLogin(user).then(result =>{
+    console.log(result)
+    user.setId(result.id)
+    user.setPassword(null)
+    user.setFirstname(result.firstname)
+    user.setLastname(result.lastname)
+    handleShowHide()
+
+    setInputComment(`${result.firstname} ${result.lastname} `)
+  }).catch((error) =>{
+    alert(`Login inválido. Erro:${error.message}`)
+  })
+
+  console.log(user)
+}
+const LoginComponent = {
+  run: () => {
+    const formLogin = document.getElementById('formLogin')
+    formLogin.addEventListener("submit", handleLogin)
+    }
+  }
+
+  export { LoginComponent }
+
+
