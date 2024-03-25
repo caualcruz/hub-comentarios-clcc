@@ -68,7 +68,6 @@ box-shadow: 0px 1px 2px}
 margin-left: 120px;
 }
 
-
 .btn-submit{
     border: none;
     background-color: rgb(201, 201, 201);
@@ -94,4 +93,19 @@ margin-left: 120px;
 .comments.disabled{
     opacity: 0;
     pointer-events: none;
+}
+
+
+#comment-feed ::-webkit-scrollbar{
+    width: 8px;
+    height: 10px;
+}
+
+#comment-feed{
+    max-height: 60vh;
+    max-width: 60vh;
+    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
 }
