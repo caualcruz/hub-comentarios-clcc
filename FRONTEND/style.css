@@ -3,12 +3,13 @@ body {
     background-color: rgb(254, 254, 254);
 }
 
-#comment-feed{
+#comment-feed {
     height: 400px;
 }
 
-.box-shadow-inset{
-box-shadow: 0px 1px 2px}
+.box-shadow-inset {
+    box-shadow: 0px 1px 2px
+}
 
 .comments {
     width: 400px;
@@ -21,7 +22,7 @@ box-shadow: 0px 1px 2px}
     background-color: rgb(255, 255, 255);
 }
 
-.comments *{
+.comments * {
     display: block;
 }
 
@@ -30,17 +31,16 @@ box-shadow: 0px 1px 2px}
     margin-bottom: 10px;
 }
 
-#inputAuthor{
+#inputAuthor {
     margin-top: 20px;
 }
 
-#inputComment{
+#inputComment {
     margin-top: 20px;
 }
 
-
-#form-comentario textarea, input {
-    
+#form-comentario textarea,
+input {
     padding: 5px;
     resize: none;
     max-width: 300px;
@@ -52,23 +52,28 @@ box-shadow: 0px 1px 2px}
     border: 1px solid rgb(86, 86, 86);
 }
 
-#login-form button{ 
+#login-form button {
     margin-left: 130px;
     margin-top: 30px;
 }
 
-#login-form *{
+#login-form * {
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-
-#form-comentario button{
-margin-left: 120px;
+#form-comentario button {
+    margin-left: 120px;
 }
 
-.btn-submit{
+ li {
+    margin-top: 20px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.btn-submit {
     border: none;
     background-color: rgb(201, 201, 201);
     border-radius: 7px;
@@ -77,31 +82,55 @@ margin-left: 120px;
     width: 100px;
 }
 
-#form-comentario form{
+#form-comentario form {
     margin: 10px auto 0px auto;
     padding: 10px auto 0px auto;
 }
 
-.disabled{
+.disabled {
     display: none;
 }
 
-.comments{
+#menuDis button {
+    font-size: 40px;
+    background-color: transparent;
+    border: none;
+    width: 40px;
+}
+
+.divMenu{
+    margin-left: 10px;
+    width: 90px;
+    margin-top: 10px;
+    color: black;
+    padding: 7px;
+}
+
+.divMenu button {
+    font-size: 20px;
+    width: 200px;
+}
+
+.comments {
     transition: all 0.5s ease
 }
 
-.comments.disabled{
+.comments.disabled {
     opacity: 0;
     pointer-events: none;
 }
 
-
-#comment-feed ::-webkit-scrollbar{
-    width: 8px;
-    height: 10px;
+::-webkit-scrollbar {
+    width: 10px;
+    height: 1px;
 }
 
-#comment-feed{
+::-webkit-scrollbar-thumb {
+    background-color: rgb(201, 201, 201);
+    border-radius: 10px;
+}
+
+#comment-feed {
     max-height: 60vh;
     max-width: 60vh;
     overflow: auto;

@@ -8,9 +8,24 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
+    <div class="divMenu card shadow disabled" id="menuDis">
+
+        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Usuário
+        </a>
+
+        <ul class="dropdown-menu formUser">
+            <li><a type="submit" class="dropdown-item" id="btnDados">Meus dados</a></li>
+            <li><a class="dropdown-item" id="btnBack">Sair</a></li>
+        </ul>
+    </div>
+
+
     <!-- ADD NEW COMMENT -->
 
     <div class="container text-center">
@@ -29,11 +44,34 @@
                 <div class="comments box-shadow-inset mb-9 disabled" id="form-comentario">
                     <h3>Novo Comentário</h3>
                     <form id="formComment">
-                        <input type="text" class="form-control" placeholder="Username" id="inputAuthor" required>
+                        <input type="text" class="form-control" placeholder="Username" id="inputAuthor" disabled
+                            required>
                         <textarea class="form-control" name="comentario" id="inputComment" cols="30" rows="10" required
                             placeholder="Comentário"></textarea>
                         <button type="submit" class="btn-submit">Enviar</button>
                     </form>
+                </div>
+
+                <div class=" box-shadow-inset mb-9 disabled " id="user-data">
+                    <h3>Dados do usuário</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Sobrenome</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Senha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="userList">
+                                <td id="dataNome"></td>
+                                <td id="dataSobrenome"></td>
+                                <td id="dataUsername"></td>
+                                <td id="dataPassword"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="col">

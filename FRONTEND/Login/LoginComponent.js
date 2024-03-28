@@ -13,13 +13,37 @@ const getLoginInputs = () => {
 const handleShowHide = () => {
  const newCommentTag = document.getElementById('form-comentario')
   const loginTag = document.getElementById('login-form')
+  const menuTag = document.getElementById('menuDis')
 
   if( newCommentTag.classList.contains('disabled')){
     newCommentTag.classList.remove('disabled')
     loginTag.classList.add('disabled')
+    menuTag.classList.remove('disabled')
   } else {
     newCommentTag.classList.add('disabled')
     loginTag.classList.remove('disabled')
+    menuTag.classList.add('disabled')
+  }
+}
+
+const dados = () => {
+  const btnDados = document.getElementById('btnDados'); 
+ btnDados = document.addEventListener('click',handleShowData)
+  const btnBack = document.getElementById('btnBack'); 
+ btnBack = document.addEventListener('click',handleShowData)
+}
+
+const handleShowData = () => {
+ const userData = document.getElementById('user-data')
+ const menuTag = document.getElementById('menuDis')
+ const newCommentTag = document.getElementById('form-comentario')
+
+  if( userData.classList.contains('disabled')){
+    newCommentTag.classList.add('disabled')
+    userData.classList.remove('disabled')
+  } else {
+    newCommentTag.classList.remove('disabled')
+    menuTag.classList.add('disabled')
   }
 }
 
@@ -35,6 +59,7 @@ const handleLogin = (event) =>{
     user.setFirstname(result.firstname)
     user.setLastname(result.lastname)
     handleShowHide()
+    handleShowData()
 
     setInputComment(`${result.firstname} ${result.lastname} `)
   }).catch((error) =>{
