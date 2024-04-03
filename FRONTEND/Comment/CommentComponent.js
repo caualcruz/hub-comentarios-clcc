@@ -54,6 +54,7 @@ const loadComment = () => {
       const comments = result.map(
         (comment) =>
           new Comment(
+            comment.userId,
             comment.id,
             comment.author,
             comment.comment_text,

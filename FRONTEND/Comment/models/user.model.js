@@ -35,10 +35,6 @@ setUsername(username){
     this.username = username;
 }
 
-getPassword(){
-    return this.password;
-}
-
 setPassword(password){
     this.password = password;
 }

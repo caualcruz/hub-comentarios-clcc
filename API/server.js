@@ -42,8 +42,37 @@ server.post('/login', (req, res) =>{
     })
 })
 
+server.get('/user-comments', (req, res) => {
+    const {userId} = req.body
+    const query = `
+    SELECT 
+    comment.id, 
+    user.username as author,
+    comment.comment_text,
+    comment.created_at,
+    comment.updated_at
+    FROM comment
+    INNER JOIN user ON comment.userId = user.id
+    WHERE userId =?
+    `
+    db.query(query,[userId], (err, result) =>{
+        if (err) {
+            res.status(500).json({success: false, error: err});
+        }
+        res.json({success: true, comment:result});
+    })
+})
+
 server.get('/comment', (req, res) =>{
-    db.query('SELECT * FROM comment', (err, result) =>{
+    const queryByUser = `SELECT comment.id, 
+	user.username as author,
+    comment.comment_text,
+    comment.created_at,
+    comment.updated_at
+ FROM comment
+ INNER JOIN user ON comment.userId = user.id
+ORDER BY comment.updated_at DESC`
+    db.query(queryByUser, (err, result) =>{
         if (err) {
             res.status(500).json({success: false, error: err});
         }
@@ -61,9 +90,9 @@ server.get('/user', (req, res) =>{
 
 //ADICIONAR COMENTARIOS
 
-server.post('/new-Comment', (req, res) =>{
+server.post('/comment', (req, res) =>{
     const {author, comment_text} = req.body;
-    db.query('INSERT INTO comment (author, comment_text) VALUES (?,?)', [author, comment_text], (err, result) =>{
+    db.query('INSERT INTO comment (userId, comment_text) VALUES (?,?)', [userId, comment_text], (err, result) =>{
         if (err) {
             res.status(500).json({success: false, error: err});
         }

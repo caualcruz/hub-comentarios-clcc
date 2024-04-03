@@ -1,7 +1,7 @@
 import { User } from "../Comment/models/user.model.js";
 import { LoginService } from "../services/login.services.js";
 import { setInputComment } from "../Comment/CommentComponent.js"
-
+import { storageServices } from "../services/localStorage.service.js";
 
 const getLoginInputs = () => {
   return {
@@ -55,6 +55,10 @@ const handleLogin = (event) =>{
   LoginService.apiAuthLogin(user).then(result =>{
     console.log(result)
     user.setId(result.id)
+
+    storageServices.user.store(user)
+    console.log(result)
+
     user.setPassword(null)
     user.setFirstname(result.firstname)
     user.setLastname(result.lastname)
