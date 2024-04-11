@@ -1,3 +1,5 @@
+import { storageServices } from "../services/localStorage.service";
+
 const loadUserData = () => {};
 
 const UserProfileVector = {
@@ -32,3 +34,8 @@ const displayUserData = () => {
             </div>`;
   divFeed.appendChild(divDisplay);
 };
+
+const handleMeusComentarios = () =>{
+  const userId =  storageServices
+}
+
