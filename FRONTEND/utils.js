@@ -1,47 +1,32 @@
 const formatDate = (data) => {
-  const dataAtual = new Date(data);
+  const currentDate = new Date(data);
   const options = {
-    day: "2-digit",
-    month: "short",
-    hour: "numeric",
-    hour12: false,
+      day: '2-digit',
+      month: 'short',
+      hour: 'numeric',
+      hour12: false
   };
-  const formattedDate = `${dataAtual.toLocaleString("pt-BR", options)} horas`;
-  return formattedDate;
-};
 
-function geradorDeCor(colors) {
-  return colors[Math.floor(Math.random() * colors.length)];
-}
-function darkColors() {
-  const cores = [
-    "#000000",
-    "#2F4F4F",
-    "#808080",
-    "#000080",
-    "#008000",
-    "#4B0082",
-    "#FF0000",
-  ];
-
-  return geradorDeCor(cores)
-}
-function lightColors() {
-  const cores = [
-    "#E6E6FA",
-    "#D8BFD8",
-    "#836FFF",
-    "#696969",
-    "#DCDCDC",
-    "#483D8B",
-    "B0C4DE",
-    "#98FB98",
-  ];
-
-  return geradorDeCor(cores)
+  let formattedDate = currentDate.toLocaleDateString('pt-BR', options)
+  return formattedDate.replace(',', ' às') + 'hs';
 }
 
-export { lightColors }
-export { darkColors };
-export { formatDate };
-export { geradorDeCor };
+const randomInt = (value) => {
+  return Math.floor(Math.random() * value)
+}
+
+const randomColors = () => {
+  let darkPalette = ['070F2B', '1B1A55', '535C91', '9290C3', '030637', '3C0753', '720455']
+  let lightPalette = ['FFBE98', 'FEECE2', 'F6FDC3', 'CDFADB', 'FFF8E3', 'F2F1EB', 'F1EAFF']
+
+  let colors = []
+  colors.push(darkPalette)
+  colors.push(lightPalette)
+
+  return {
+      dark: colors[0][randomInt(colors[0].length)],
+      light: colors[1][randomInt(colors[1].length)]
+  }
+}
+
+export { formatDate, randomColors }

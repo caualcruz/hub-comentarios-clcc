@@ -9,9 +9,9 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 })
 
-db.connect((err)  =>{
+db.connect((err) => {
     if (err) return console.log(err);
-    console.log('Conectado com sucesso!')
+    console.log('Conectado com sucesso!');
 })
 
-module.exports = db
+module.exports = db;

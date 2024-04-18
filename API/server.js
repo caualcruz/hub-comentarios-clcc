@@ -1,39 +1,62 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const server = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+require('dotenv').config();
 
-server.use(express.urlencoded({extended: true}))
-server.use(cors())
-server.use(bodyParser.json())
-                
-const PORT = 7000
+const server = express();
 
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use(cors());
+
+const CommentRouter = require('./src/Routes/comment.route.js');
+server.use('/comment', CommentRouter);
+
+const UserRouter = require('./src/routes/user.route');
+server.use('/user', UserRouter);
+
+const LoginRouter = require('./src/routes/login.route');
+server.use('/session', LoginRouter);
+
+const PORT = 7000;
+
+
+server.get('/user-comments/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const query = `SELECT 
+                    comment.id, 
+                    user.username AS author, 
+                    comment.comment_text, 
+                    comment.created_at,
+                    comment.updated_at
+                FROM comment 
+                INNER JOIN user 
+                ON comment.userId = user.id
+                WHERE userId = ?`
+
+     db.query(query, [userId], (err,result)=>{
+        if (err) {
+            return res.status(500).json({ success: false, error: 'Internal server error' });
+        } else if (result.length <= 0) {
+            return res.status(500).json({ success: false, error: 'Nenhum comentário encontrado com este usuário' });
+        } else {
+            res.json({ success: true, comments: result });
+        }
+     })           
+}
+
+)
+
+server.post('/comment', (req, res) => {
+    const { userId, comment_text } = req.body;
+    db.query('INSERT INTO comment (userId, comment_text) VALUES (?, ?)', [userId, comment_text], (err, result) => {
+        if (err) {
+            return res.status(500).json({ success: false, error: 'Internal server error' });
+        }
+        res.json({ success: true });
+    })
 })
 
-db.connect((err)  =>{
-    if (err) return console.log(err);
-    console.log('Conectado com sucesso!')
+server.listen(PORT, () => {
+    console.log(`O server está rodando em http://localhost:${PORT}`)
 })
-
-server .get('/', (req, res) =>{
-res.send(`
-<h1>API do sistema HUB DE COMENTÁRIOS</h1>
-<ul><a href="http://localhost:7000/comment">Get de Comentários</ul>
-<ul><a href="http://localhost:7000/user-comments">Get de Comentários do Usuário Específico</ul>
-<ul><a href="http://localhost:7000/user">Get de Usuários</ul>
-`)    
-})
-
-const userRouter = require('./src/Routes/UserRoute')
-
-server.listen(PORT, () =>{
-    console.log(`O server está rodando em http//localhost:${PORT}`)
-})
-server.use('/user', userRouter)
