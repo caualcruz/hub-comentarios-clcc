@@ -1,4 +1,3 @@
-
 import decodeJWT from '../../lib/decodeJWT.js';
 import { User } from "../models/user.model.js";
 const URL_API = "http://localhost:7000/session";
@@ -32,7 +31,7 @@ const LoginService = {
     if (token) {
       const payload = decodeJWT(token);
       if (payload) {
-        const user = new User(payload.id, payload.username, payload.password, payload.firstname, payload.lastname)
+        const user = new User(payload.id, payload.username, payload.password, payload.firstname, payload.lastname, payload.imgLink)
         return user;
       } else {
         return null;
@@ -57,4 +56,4 @@ const LoginService = {
   }
 };
 
-export { LoginService }
+export default LoginService

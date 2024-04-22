@@ -1,4 +1,3 @@
-
 import { LoginComponent, setSignedUser } from "./src/components/login.component.js";
 import { CommentComponent, loadComment } from "./src/components/comment.component.js";
 import { UserComponent } from "./src/components/user.component.js";

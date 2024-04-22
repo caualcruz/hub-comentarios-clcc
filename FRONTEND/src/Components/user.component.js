@@ -1,6 +1,6 @@
 import UserService from "../services/user.service.js";
 import LoginService from "../services/login.service.js";
-import { formatDate, randomColors } from "../utils.js";
+import { randomColors } from "../utils.js";
 import { loadComment } from "./comment.component.js";
 import MainView from '../view/main.view.js';
 
@@ -93,13 +93,17 @@ const handleShowHideUser = () => {
     }
 }
 
+// const listenerToBtnMeusDados = () => {
+//     const btnMeusDados = document.getElementById('btnMeusDados');
+//         btnMeusDados.addEventListener('click', handleShowHideUser);
+// }
+
 const UserComponent = {
     run: () => {
-        const btnMeusDados = document.getElementById('btnMeusDados');
-        btnMeusDados.addEventListener('click', handleShowHideUser);
+        
         const btnSairMDados = document.getElementById('btnSairMDados');
         btnSairMDados.addEventListener('click', handleShowHideUser);
     }
 }
 
-export { UserComponent }
+export { UserComponent, handleShowHideUser }
